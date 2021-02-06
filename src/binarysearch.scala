@@ -1,26 +1,18 @@
+import scala.annotation.tailrec
+
 object binarysearch extends App {
-  println("Scala prog for bin search v.0.0A")
+  println("Scala prog for bin search v.0.1A")
 
-  val max = 101
-  val conList = new Array[Int](max)
-  for(a <- 0 until max) {
-    conList(a) = a
+  val conList = (0 to 100).toList
+
+  @tailrec
+  def binsearch3(conList: List[Int], low: Int, high: Int, find: Int): Int = {
+    val med = (low + high) / 2
+    val maybe = conList(med)
+    if(maybe == find) med
+    else if(maybe > find) binsearch3(conList, low, med + 1, find)
+    else binsearch3(conList, med - 1, high, find)
   }
 
-  def binsearch2(digit: Int): Unit = {
-    var iteration = 0
-    var low = 0
-    var high = max - 1
-    while (low <= high) {
-      iteration += 1
-      val med = (low + high) / 2
-      val maybe = conList(med)
-      if(maybe == digit) println(iteration) //can change to iteration var
-      if(maybe > digit ) high = med - 1
-      else low = med + 1
-    }
-  }
-
-  binsearch2(68)
-
+  println(binsearch3(conList, 0, conList.length - 1, 32))
 }
