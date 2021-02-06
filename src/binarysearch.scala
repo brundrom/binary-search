@@ -14,10 +14,10 @@ object binarysearch extends App {
         if (maybe == find) (med, iterato)
         else if (maybe > find) binsearch3(conList, low, med + 1, find, iterato + 1)
         else binsearch3(conList, med - 1, high, find, iterato + 1)
-      } else (99, 99) //If digit is highter than high
-    } else (0, 0)     //If digit is lower than low
+      } else (-1, iterato) //If digit is highter than high
+    } else (-1, iterato)     //If digit is lower than low
   }
 
-  val(index, iterat) = binsearch3(conList, 0, conList.length - 1, 30, 0)
+  val(index, iterat) = binsearch3(conList, 0, conList.length - 1, 65, 0)
   println(s"Finded digit: $index by total iterations: $iterat")
 }
