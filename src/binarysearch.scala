@@ -7,11 +7,15 @@ object binarysearch extends App {
 
   @tailrec
   def binsearch3(conList: List[Int], low: Int, high: Int, find: Int, iterato: Int): (Int, Int) = {
-    val med = (low + high) / 2
-    val maybe = conList(med)
-    if(maybe == find) (med, iterato)
-    else if(maybe > find) binsearch3(conList, low, med + 1, find, iterato + 1)
-    else binsearch3(conList, med - 1, high, find, iterato + 1)
+    if(find > low) {
+      if (find < high) {
+        val med = (low + high) / 2
+        val maybe = conList(med)
+        if (maybe == find) (med, iterato)
+        else if (maybe > find) binsearch3(conList, low, med + 1, find, iterato + 1)
+        else binsearch3(conList, med - 1, high, find, iterato + 1)
+      } else (99, 99) //If digit is highter than high
+    } else (0, 0)     //If digit is lower than low
   }
 
   val(index, iterat) = binsearch3(conList, 0, conList.length - 1, 30, 0)
