@@ -1,23 +1,23 @@
 import scala.annotation.tailrec
 
 object binarysearch extends App {
-  println("Scala prog for bin search v.0.1A")
+  println("Scala program for binary search v.0.1b")
 
   val conList = (0 to 100).toList
 
   @tailrec
-  def binsearch3(conList: List[Int], low: Int, high: Int, find: Int, iterato: Int): (Int, Int) = {
+  def Binary_search(conList: List[Int], low: Int, high: Int, find: Int, it_num: Int): (Int, Int) = {
     if(find > low) {
       if (find < high) {
         val med = (low + high) / 2
         val maybe = conList(med)
-        if (maybe == find) (med, iterato)
-        else if (maybe > find) binsearch3(conList, low, med + 1, find, iterato + 1)
-        else binsearch3(conList, med - 1, high, find, iterato + 1)
-      } else (-1, iterato) //If digit is highter than high
-    } else (-1, iterato)     //If digit is lower than low
+        if (maybe == find) (med, it_num)
+        else if (maybe > find) Binary_search(conList, low, med + 1, find, it_num + 1)
+        else Binary_search(conList, med - 1, high, find, it_num + 1)
+      } else (-1, it_num) //If digit is highter than high
+    } else (-1, it_num)     //If digit is lower than low
   }
 
-  val(index, iterat) = binsearch3(conList, 0, conList.length - 1, 65, 0)
-  println(s"Finded digit: $index by total iterations: $iterat")
+  val(index, iterations) = Binary_search(conList, 0, conList.length - 1, 65, 0)
+  println(s"Finded digit: $index by total iterations: $iterations")
 }
